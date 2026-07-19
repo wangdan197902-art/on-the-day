@@ -15,5 +15,7 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
+  {{/* Pagefind 搜索：只在搜索页加载，减少其他页面负担 */}}
+  {{ block "scripts" . }}{{ end }}
 </body>
 </html>
