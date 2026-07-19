@@ -70,15 +70,18 @@ jobs:
           echo "=== 构建产物统计 ==="
           find site/public -name "*.html" | wc -l
           du -sh site/public/
+          echo "=== 文件类型统计 ==="
+          find site/public -type f | sed 's|.*\.||' | sort | uniq -c | sort -rn | head -10
 
       - name: Package site as zip
         run: |
-          echo "📦 打包 site/public 为 zip..."
+          echo "📦 打包 site/public 为 zip (排除 Pagefind 索引测试)..."
           cd site
-          zip -r -q ../site-public.zip public/
+          zip -r -q -X ../site-public.zip public/ -x "public/pagefind/*" -x "public/pagefind-ui/*"
           cd ..
           ls -lh site-public.zip
           echo "Zip 大小: $(du -h site-public.zip | cut -f1)"
+          echo "Zip 中文件数: $(unzip -l site-public.zip | tail -1 | awk '{print $2}')"
 
       - name: Deploy to Netlify via Zip API
         run: |
