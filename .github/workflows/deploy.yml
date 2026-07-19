@@ -48,7 +48,7 @@ jobs:
 
       - name: Generate full site content
         run: |
-          DAYS_LIMIT="${{ github.event.inputs.days_limit || '50' }}"
+          DAYS_LIMIT="${{ github.event.inputs.days_limit || '5' }}"
           echo "🚀 生成内容: 30地区 × ${DAYS_LIMIT}天 × 20语种"
           python3 scripts/generate_full_site.py --output-dir=site/content --limit-days=${DAYS_LIMIT} 2>&1 | tail -10
 
