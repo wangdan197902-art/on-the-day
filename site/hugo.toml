@@ -114,6 +114,13 @@ buildFuture = false
   startLevel = 2
   endLevel = 4
 
+# HTML 压缩配置：保留属性引号，确保 canonical / GSV 等关键 meta 标签
+# 能被外部校验脚本（如 125域名全面排查.py）的正则 `rel="canonical"` 匹配到
+[minify]
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      keepQuotes = true
+
 # 缓存目录
 [caches.images]
   dir = ":cacheDir/hugo_tih_images"
