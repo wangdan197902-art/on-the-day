@@ -20,7 +20,7 @@ defaultContentLanguage = "zh"
 [languages]
   [languages.zh]
     weight = 1
-    title = "AI Terms Dictionary - 中文"
+    title = "今天历史"
 
 # ===== SEO优化参数 =====
 [params]
@@ -28,7 +28,7 @@ defaultContentLanguage = "zh"
   currentLanguage = "zh"
 
   # 站点描述（按语种翻译）
-  description = "AI Terms Dictionary in 中文 - Comprehensive AI terminology reference"
+  description = "今天历史 - 中文版，地区化历史档案站"
 
   # 自定义域名
   customDomain = "history-zh.ai-term-hub.com"

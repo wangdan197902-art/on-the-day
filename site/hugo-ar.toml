@@ -20,7 +20,7 @@ defaultContentLanguage = "ar"
 [languages]
   [languages.ar]
     weight = 1
-    title = "AI Terms Dictionary - العربية"
+    title = "اليوم في التاريخ"
 
 # ===== SEO优化参数 =====
 [params]
@@ -28,7 +28,7 @@ defaultContentLanguage = "ar"
   currentLanguage = "ar"
 
   # 站点描述（按语种翻译）
-  description = "AI Terms Dictionary in العربية - Comprehensive AI terminology reference"
+  description = "اليوم في التاريخ - النسخة العربية، أرشيف تاريخي إقليمي"
 
   # 自定义域名
   customDomain = "history-ar.ai-term-hub.com"

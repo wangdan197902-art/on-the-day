@@ -20,7 +20,7 @@ defaultContentLanguage = "ko"
 [languages]
   [languages.ko]
     weight = 1
-    title = "AI Terms Dictionary - 한국어"
+    title = "오늘의 역사"
 
 # ===== SEO优化参数 =====
 [params]
@@ -28,7 +28,7 @@ defaultContentLanguage = "ko"
   currentLanguage = "ko"
 
   # 站点描述（按语种翻译）
-  description = "AI Terms Dictionary in 한국어 - Comprehensive AI terminology reference"
+  description = "오늘의 역사 - 한국어판, 지역별 역사 아카이브"
 
   # 自定义域名
   customDomain = "history-ko.ai-term-hub.com"
