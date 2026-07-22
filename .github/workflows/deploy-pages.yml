@@ -39,6 +39,16 @@ jobs:
       - name: Generate site content
         run: python3 scripts/generate_full_site.py --output-dir=site/content --limit-days=5 2>&1 | tail -10
         continue-on-error: true
+      - name: Merge root static/ into site/static/
+        run: |
+          if [ -d static ]; then
+            mkdir -p site/static
+            cp -r static/* site/static/ 2>/dev/null || true
+            echo "Merged root static/ into site/static/:"
+            ls -la site/static/
+          else
+            echo "No root static/ directory found"
+          fi
       - name: Build with Hugo
         run: cd site && hugo --minify --baseURL "https://history.ai-term-hub.com/"
         env:
