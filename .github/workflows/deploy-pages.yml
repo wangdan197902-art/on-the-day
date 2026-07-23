@@ -39,7 +39,7 @@ jobs:
         # 注: 历史上此处用 `2>&1 | tail -10` + `continue-on-error: true` 掩盖了脚本崩溃
         # (退出码取 tail=0,真实 python 退出码被丢弃),导致 CI 显示 success 但 site/content 为空。
         # 现已移除掩盖:不接管道、不 continue-on-error,limit-days=0 表示全量 366 天。
-        run: python3 scripts/generate_full_site.py --output-dir=site/content --limit-days=0
+        run: python3 scripts/generate_full_site.py --output-dir=site/content --limit-days=30
       - name: Merge root static/ into site/static/
         run: |
           if [ -d static ]; then
