@@ -111,9 +111,16 @@ jobs:
           lang = os.environ["CURRENT_LANG"]
           all_langs = ["ar","cs","da","de","el","en","es","fi","fr","hu","id","it","ja","ko","nl","no","pl","pt","ro","ru","sv","tr","vi","zh"]
           other_langs = set(l for l in all_langs if l != lang)
-          sitemap_path = "publish-" + lang + "/sitemap.xml"
-          if not os.path.exists(sitemap_path):
-              print("Warning: " + sitemap_path + " not found, skipping")
+          root_sitemap = "publish-" + lang + "/sitemap.xml"
+          lang_sitemap = "publish-" + lang + "/" + lang + "/sitemap.xml"
+          if os.path.exists(lang_sitemap):
+              sitemap_path = lang_sitemap
+              print("Using lang subdirectory sitemap: " + lang_sitemap)
+          elif os.path.exists(root_sitemap):
+              sitemap_path = root_sitemap
+              print("Using root sitemap: " + root_sitemap)
+          else:
+              print("Warning: no sitemap.xml found, skipping")
               raise SystemExit(0)
           with open(sitemap_path, "r", encoding="utf-8") as f:
               content = f.read()
@@ -131,13 +138,13 @@ jobs:
               if first_segment in other_langs:
                   continue
               valid.append(b)
-          with open(sitemap_path, "w", encoding="utf-8") as f:
+          with open(root_sitemap, "w", encoding="utf-8") as f:
               f.write("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n")
               f.write("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n")
               for b in valid:
                   f.write(b + "\n")
               f.write("</urlset>\n")
-          print("Fixed sitemap: " + str(len(valid)) + " URLs for " + lang)
+          print("Fixed sitemap: " + str(len(valid)) + " URLs for " + lang + " (source: " + sitemap_path + ")")
           '
 
       - name: Build Pagefind index
