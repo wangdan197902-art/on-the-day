@@ -114,6 +114,5 @@
 {{ end }}
 
 {{/* IndexNow API Key 声明（key 文件由 deploy-matrix.yml 自动生成） */}}
-{{ with .Site.Params.indexnow_api_key }}
-<link rel="stylesheet" href="/{{ . }}.txt">
-{{ end }}
+{{/* 注: IndexNow 协议只需根目录存在 {key}.txt 文件即可,无需在 HTML 中声明 */}}
+{{/* 错误的 <link rel="stylesheet"> 声明已移除,避免浏览器 MIME 类型警告 */}}

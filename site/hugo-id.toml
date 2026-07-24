@@ -1,4 +1,4 @@
-# Hugo 单语种配置模板（GitHub Pages 部署器专用）
+﻿# Hugo 单语种配置模板（GitHub Pages 部署器专用）
 #
 # 使用方式：
 #   1. 由 scripts/创建hugo配置.py 自动填充占位符并生成 hugo-{lang}.toml
@@ -16,7 +16,7 @@ languageName = "Bahasa Indonesia"
 defaultContentLanguage = "id"
 
 # ===== 单语种构建：禁用其他语种 =====
-# 只构建当前语种，避免生成25个语种子目录
+# 只构建当前语种，避免生成24个语种子目录
 [languages]
   [languages.id]
     weight = 1

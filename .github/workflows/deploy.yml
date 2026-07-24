@@ -9,9 +9,9 @@ on:
   workflow_dispatch:
     inputs:
       days_limit:
-        description: '限制生成天数(0=全部366天,50=测试用)'
+        description: '限制生成天数(0=全部366天,30=测试用)'
         required: false
-        default: '50'
+        default: '0'
         type: string
 
 permissions:
@@ -48,9 +48,10 @@ jobs:
 
       - name: Generate full site content
         run: |
-          DAYS_LIMIT="${{ github.event.inputs.days_limit || '5' }}"
-          echo "🚀 生成内容: 30地区 × ${DAYS_LIMIT}天 × 20语种"
-          python3 scripts/generate_full_site.py --output-dir=site/content --limit-days=${DAYS_LIMIT} 2>&1 | tail -10
+          DAYS_LIMIT="${{ github.event.inputs.days_limit || '0' }}"
+          echo "🚀 生成内容: 30地区 × ${DAYS_LIMIT}天 × 24语种 (0=全量366天)"
+          # 注: 不使用管道,保留 Python 退出码,避免错误被掩盖
+          python3 scripts/generate_full_site.py --output-dir=site/content --limit-days=${DAYS_LIMIT}
 
       - name: Build with Hugo
         run: |
@@ -63,7 +64,6 @@ jobs:
         run: |
           cd site
           npx pagefind --site public/
-        continue-on-error: true
 
       - name: Verify build output
         run: |

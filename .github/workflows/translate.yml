@@ -71,6 +71,8 @@ jobs:
           fi
 
           echo "🚀 执行: $CMD"
+          # 注: 使用 set -o pipefail 确保管道中 Python 失败时整个命令失败
+          set -o pipefail
           $CMD 2>&1 | tee translate.log
           echo "=== 翻译日志(最后 20 行) ==="
           tail -20 translate.log
@@ -100,6 +102,6 @@ jobs:
         if: always()
         run: |
           echo "=== Translate Workflow 总结 ==="
-          echo "语种: ${{ steps.prep.outputs.langs || '全部 20 种' }}"
+          echo "语种: ${{ steps.prep.outputs.langs || '全部 24 种' }}"
           echo "地区: ${{ steps.prep.outputs.countries || '全部 30 地区' }}"
           echo "提交状态: ${{ env.committed }}"

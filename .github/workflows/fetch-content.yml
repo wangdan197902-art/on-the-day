@@ -58,11 +58,12 @@ jobs:
 
       - name: Run fetch pipeline
         id: fetch
-        continue-on-error: true
         run: |
           echo "🚀 抓取 ${{ steps.dates.outputs.dates }} 的事件"
-          # 使用 mock 模式抓取(因为 Wikipedia API 在 GitHub Actions 中可能受限)
-          python3 -m src.pipeline.orchestrator --mode=day --month=$(echo ${{ steps.dates.outputs.dates }} | cut -d'-' -f1) --day=$(echo ${{ steps.dates.outputs.dates }} | cut -d'-' -f2) --country=CN --language=zh 2>&1 | tee fetch.log || echo "fetch_failed=true" >> $GITHUB_ENV
+          # 注: 使用 set -o pipefail 确保管道中 Python 失败时整个命令失败
+          # 不使用 || echo 吞掉错误,让 CI 正确报告失败
+          set -o pipefail
+          python3 -m src.pipeline.orchestrator --mode=day --month=$(echo ${{ steps.dates.outputs.dates }} | cut -d'-' -f1) --day=$(echo ${{ steps.dates.outputs.dates }} | cut -d'-' -f2) --country=CN --language=zh 2>&1 | tee fetch.log
           echo "=== 抓取日志 ==="
           tail -20 fetch.log
 

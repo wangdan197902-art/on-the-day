@@ -1,6 +1,6 @@
 # ===========================================
 # Hugo 配置 - 地区化今天历史档案站
-# 30 地区 × 20 语种 × 366 天 = 219,600+ 页面
+# 30 地区 × 24 语种 × 366 天 = 263,520+ 页面
 # ===========================================
 
 baseURL = "https://history.ai-term-hub.com/"
@@ -18,7 +18,7 @@ buildFuture = false
   writeStats = true
   noJSConfigInAssets = true
 
-# 多语种配置(20 语种 - Hugo 0.158+ 使用 label 替代 languageName)
+# 多语种配置(24 语种 - Hugo 0.158+ 使用 label 替代 languageName)
 [languages]
 [languages.zh]
   label = "中文"
@@ -153,7 +153,7 @@ buildFuture = false
 
 # 站点参数
 [params]
-  description = "地区化今天历史档案站 — 30 地区 × 20 语种 × 366 天 = 219,600+ 页面"
+  description = "地区化今天历史档案站 — 30 地区 × 24 语种 × 366 天 = 263,520+ 页面"
   author = "Today in History Archive"
   # 30 地区列表(逗号分隔)
   countries = "CN,US,JP,KR,UK,DE,FR,RU,BR,IN,AU,CA,IT,ES,MX,ID,TH,VN,SG,MY,PH,SA,AE,EG,ZA,NG,TR,PL,NL,SE"

@@ -4,10 +4,10 @@
 #   1. 由 scripts/创建工作流.py 自动填充占位符并写入 .github/workflows/deploy-matrix.yml
 #   2. 占位符：wangdan197902-art / history / ai-term-hub.com / 0.140.0
 #   3. 在仓库 Settings → Secrets 中添加 PERSONAL_GITHUB_TOKEN（由 scripts/配置secrets.py 完成）
-#   4. 推送到 main 分支即可触发25语种并行部署
+#   4. 推送到 main 分支即可触发24语种并行部署
 #
-# 部署目标：25个独立仓库的 gh-pages 分支
-# 自定义域名：{lang}.{site_type}.{domain}
+# 部署目标：24个独立仓库的 gh-pages 分支
+# 自定义域名：history-{lang}.ai-term-hub.com
 
 name: Deploy Multilingual Sites (Matrix)
 
@@ -19,7 +19,7 @@ on:
       days_limit:
         description: '限制生成天数(0=全部366天,30=测试用)'
         required: false
-        default: '30'
+        default: '0'
         type: string
 
 env:
@@ -85,7 +85,7 @@ jobs:
           mkdir -p publish-${{ matrix.lang }}
           cp -r public-${{ matrix.lang }}/* publish-${{ matrix.lang }}/
 
-          # 删除其他语种子目录（25 个语种中除当前语种外的 24 个）
+          # 删除其他语种子目录（24 个语种中除当前语种外的 23 个）
           for other_lang in ar cs da de el en es fi fr hu id it ja ko nl no pl pt ro ru sv tr vi zh; do
             if [ "$other_lang" != "${{ matrix.lang }}" ]; then
               rm -rf "publish-${{ matrix.lang }}/$other_lang"
