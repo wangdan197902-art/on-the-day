@@ -1,9 +1,9 @@
 <footer class="site-footer">
   <div class="container">
-    <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. 数据来源 Wikipedia (Mock).</p>
+    <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. 数据来源 Wikipedia.</p>
     <nav class="footer-langs">
     {{ range $.Site.Languages }}
-      <a href="/{{ .Lang }}/">{{ .LanguageName }}</a>
+      <a href="/{{ .Lang }}/">{{ .Label | default .LanguageName }}</a>
     {{ end }}
     </nav>
   </div>
